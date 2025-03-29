@@ -3,12 +3,13 @@ from graphics import Line, Point
 
 
 class Cell:
-    def __init__(self, win):
+    def __init__(self, win=None):
         
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_bottom_wall = True
+        self.visited = None
         self._x1 = None
         self._x2 = None
         self._y1 = None
@@ -25,15 +26,29 @@ class Cell:
         if self.has_left_wall == True:
             line = Line(Point(x1, y1), Point(x1, y2))
             self._win.draw_line(line)
+        else:
+            line = Line(Point(x1, y1), Point(x1, y2))
+            self._win.draw_line(line, "#d9d9d9")
         if self.has_top_wall == True:
             line = Line(Point(x1, y1), Point(x2, y1))
             self._win.draw_line(line)
+        else:
+            line = Line(Point(x1, y1), Point(x2, y1))
+            self._win.draw_line(line, "#d9d9d9")
+
         if self.has_right_wall == True:
             line = Line(Point(x2, y1), Point(x2, y2))
             self._win.draw_line(line)
+        else:
+            line = Line(Point(x2, y1), Point(x2, y2))
+            self._win.draw_line(line, "#d9d9d9")
         if self.has_bottom_wall == True:
             line = Line(Point(x1, y2), Point(x2, y2))
             self._win.draw_line(line)
+        else:
+            line = Line(Point(x1, y2), Point(x2, y2))
+            self._win.draw_line(line, "#d9d9d9")
+            
     def draw_move(self, to_cell, undo=False):
     # Set the color based on undo flag
         if undo:
